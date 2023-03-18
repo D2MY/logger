@@ -14,7 +14,7 @@ class IncidentsService
      */
     public function send(string $channel, string $message): void
     {
-        $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS)[1] ?? null;
+        $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS)[2] ?? null;
 
         $class = data_get($trace, 'class');
         $method = data_get($trace, 'function');
