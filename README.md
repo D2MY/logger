@@ -8,7 +8,9 @@
 
 # Опубликовать конфиг
 
-php artisan vendor:publish --tag=incidents
+```
+  php artisan vendor:publish --tag=incidents
+```
 
 # config/incidents.php
 
@@ -22,4 +24,4 @@ php artisan vendor:publish --tag=incidents
 
 # Запуск:
 
-Incident::send('channel', 'message');
+D2my\Incidents\Facades\Incident::send('channel', 'message');
