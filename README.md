@@ -24,4 +24,6 @@
 
 # Запуск:
 
-D2my\Incidents\Facades\Incident::send('channel', 'message');
+```php
+  D2my\Incidents\Facades\Incident::send('channel', 'message');
+```
