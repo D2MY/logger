@@ -1,10 +1,14 @@
-# config/app.php в массив providers в провайдеры пакетов добавить:
+# config/app.php
+
+В массив providers в провайдеры пакетов добавить:
 
 ``` php
   D2my\Incidents\Providers\IncidentsServiceProvider::class,
 ```
 
-# php artisan vendor:publish --tag=incidents
+# Опубликовать конфиг
+
+php artisan vendor:publish --tag=incidents
 
 # config/incidents.php
 
