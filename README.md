@@ -6,6 +6,16 @@
 
 # php artisan vendor:publish --tag=incidents
 
-# config/incidents.php в массиве channels каждому каналу приписать свой handler, который обязательно должен исплементировать D2my\Incidents\Contracts\IncidentHandler
+# config/incidents.php
+
+В массиве channels каждому каналу приписать свой handler, который обязательно должен имплементировать D2my\Incidents\Contracts\IncidentHandler
+
+```php
+  'blocker' => [
+      'handler' => \App\Services\Handler::class
+  ],
+```
 
 # Запуск:
+
+Incident::send('channel', 'message');
