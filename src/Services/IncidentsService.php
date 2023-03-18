@@ -21,7 +21,11 @@ class IncidentsService
         $line = data_get($trace, 'line');
         $time = now()->format(config('incidents.time_format', 'Y-m-d H:i:s'));
 
-        $handler = app(config("incidents.channels.$channel.handler"));
+        try {
+            $handler = app(config("incidents.channels.$channel.handler"));
+        } catch(\Throwable) {
+            $handler = null;
+        }
 
         ($handler instanceof IncidentHandler ? $handler : app(DefaultHandler::class))->handle($message, $class, $method, $line, $time);
     }
