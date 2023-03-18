@@ -1,0 +1,24 @@
+{
+    "name": "d2my/incidents",
+    "description": "Laravel package for incidents",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "D2my\\Incidents\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "D2MY",
+            "email": "vania.klimovich@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7.2",
+        "phpunit/phpunit": "^9.5"
+    }
+}
