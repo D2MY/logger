@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'time_format' => 'Y-m-d H:i:s',
 
     'channels' => [
 //        'low' => [
