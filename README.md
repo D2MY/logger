@@ -16,7 +16,7 @@
 
 Заполнить конфиг
 
-# config/logger.php
+# config/logging.php
 
 Вставить нужным каналам обработчик в поле 'via'
 
