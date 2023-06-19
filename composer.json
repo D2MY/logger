@@ -1,11 +1,11 @@
 {
-    "name": "d2my/incidents",
-    "description": "Laravel package for incidents",
+    "name": "d2my/logger",
+    "description": "Laravel package for logging",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "D2my\\Incidents\\": "src/"
+            "D2my\\Logger\\": "src/"
         }
     },
     "authors": [
