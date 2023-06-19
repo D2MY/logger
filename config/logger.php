@@ -8,8 +8,6 @@ return [
 
     'handler' => null, // LogHandler::class
 
-    'time_format' => 'Y-m-d H:i:s',
-
     'exception_channel' => null, // ChannelEnum::EXCEPTION->value
 
     // Если guard для определения юзера не дефолтный, то тут ключём будет канал, а значением guard
