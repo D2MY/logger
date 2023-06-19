@@ -3,27 +3,23 @@
 В массив providers в провайдеры пакетов добавить:
 
 ``` php
-  D2my\Incidents\Providers\IncidentsServiceProvider::class,
+  D2my\Logger\Providers\LoggerServiceProvider::class,
 ```
 
 # Опубликовать конфиг
 
 ```
-  php artisan vendor:publish --tag=incidents
+  php artisan vendor:publish --tag=logger
 ```
 
-# config/incidents.php
+# config/logger.php
 
-В массиве channels каждому каналу приписать свой handler, который обязательно должен имплементировать D2my\Incidents\Contracts\IncidentHandler
+Заполнить конфиг
 
-```php
-  'blocker' => [
-      'handler' => \App\Services\Handler::class
-  ],
-```
+# config/logger.php
 
-# Запуск:
+Вставить нужным каналам обработчик в поле 'via'
 
 ```php
-  D2my\Incidents\Facades\Incident::send('channel', 'message');
+  'via' => \D2my\Logger\Logger::class
 ```
