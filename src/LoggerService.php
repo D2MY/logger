@@ -90,7 +90,7 @@ class LoggerService implements LoggerInterface
      */
     public static function exceptionCallback(): \Closure
     {
-        return function (Throwable $e) {
+        return function (\Throwable $e) {
             $request = request();
             $trace = $e->getTrace();
 
