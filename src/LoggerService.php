@@ -84,4 +84,29 @@ class LoggerService implements LoggerInterface
             'token' => config('logger.token')
         ]);
     }
+
+    /**
+     * @return \Closure
+     */
+    public static function exceptionCallback(): \Closure
+    {
+        return function (Throwable $e) {
+            $request = request();
+            $trace = $e->getTrace();
+
+            Log::channel(config('logger.exception_channel'))->info(
+                $e->getMessage(),
+                [
+                    'exception' => $e::class,
+                    'trace' => $trace,
+                    'request' => $request,
+                    'headers' => $request->header(),
+                    'data' => $request->all(),
+                    'class' => $e->getFile(),
+                    'method' => count($trace) > 1 ? ($trace[0]['function'] ?? 'Не известно') : 'Не известно',
+                    'line' => $e->getLine(),
+                ]
+            );
+        };
+    }
 }
