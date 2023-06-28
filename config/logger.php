@@ -2,7 +2,7 @@
 
 return [
 
-    'enable' => false,
+    'enable' => env('LOGGER_ENABLED'),
 
     'job' => null, //Job::class
 
