@@ -6,6 +6,8 @@ return [
 
     'sync' => env('LOGGER_JOB_SYNC', false),
 
+    'job' => null, //если null - будет использоваться дефолтная жоба, иначе Job::class
+
     'handler' => \D2my\Logger\WeeklyCustomLogger::class, // LogHandler::class
 
     'exception_channel' => null, // ChannelEnum::EXCEPTION->value
