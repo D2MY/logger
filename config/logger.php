@@ -6,7 +6,11 @@ return [
 
     'sync' => env('LOGGER_JOB_SYNC', false),
 
-    'job' => null, //если null - будет использоваться дефолтная жоба, иначе Job::class
+    'job' => [
+        'class' => null, //если null - будет использоваться дефолтная жоба, иначе Job::class
+        'queue' => env('LOGGER_JOB_QUEUE', 'logs'),
+        'release_time' => env('LOGGER_RELEASE_TIME', 180),
+    ],
 
     'handler' => \D2my\Logger\WeeklyCustomLogger::class, // LogHandler::class
 

@@ -23,7 +23,7 @@ class LogJob implements ShouldQueue
     public function __construct(
         private readonly array $log
     ) {
-        $this->onQueue('logs');
+        $this->onQueue(config('logger.job.queue'));
     }
 
     /**
@@ -39,7 +39,7 @@ class LogJob implements ShouldQueue
                 $this->fail();
             }
         } catch (\Throwable) {
-            $this->release(3 * 60);
+            $this->release(config('logger.job.release_time'));
         }
     }
 }
