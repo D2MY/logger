@@ -2,9 +2,9 @@
 
 return [
 
-    'enable' => env('LOGGER_ENABLED'),
+    'enable' => env('LOGGER_ENABLED', true),
 
-    'job' => null, //Job::class
+    'sync' => env('LOGGER_JOB_SYNC', false),
 
     'handler' => \D2my\Logger\WeeklyCustomLogger::class, // LogHandler::class
 

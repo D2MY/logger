@@ -35,7 +35,7 @@ class LoggerService implements LoggerInterface
                 return;
             }
 
-            config('logger.job')::dispatch($this->getLogData($message, $context, $this->with));
+            LogJob::{config('logger.sync') ? 'dispatchSync' : 'dispatch'}($this->getLogData($message, $context, $this->with));
         } catch (\Throwable $e) {
             Log::build($this->localConfig())->info($message, $this->getLogData($message, $context, $this->with));
             Log::error($e->getMessage(), $e->getTrace());
