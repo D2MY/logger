@@ -92,7 +92,7 @@ class LoggerService implements LoggerInterface
     {
         return function (\Throwable $e) {
             $request = request();
-            $trace = $e->getTrace();
+            $trace = array_slice($e->getTrace(), 0, 50);
 
             Log::channel(config('logger.exception_channel'))->info(
                 $e->getMessage(),
