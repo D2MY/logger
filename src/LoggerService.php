@@ -2,6 +2,7 @@
 
 namespace D2my\Logger;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Psr\Log\LoggerInterface;
@@ -92,7 +93,7 @@ class LoggerService implements LoggerInterface
     {
         return function (\Throwable $e) {
             $request = request();
-            $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 50);
+            $trace = array_map(fn($el) => Arr::except($el, 'args'), array_slice($e->getTrace(), 0, 50));
 
             Log::channel(config('logger.exception_channel'))->info(
                 $e->getMessage(),
@@ -103,7 +104,7 @@ class LoggerService implements LoggerInterface
                     'headers' => $request->header(),
                     'data' => $request->all(),
                     'class' => $e->getFile(),
-                    'method' => count($trace) > 1 ? ($trace[0]['function'] ?? 'Не известно') : 'Не известно',
+                    'method' => $trace[0]['function'] ?? 'Не известно',
                     'line' => $e->getLine(),
                 ]
             );
