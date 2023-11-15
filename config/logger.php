@@ -14,6 +14,8 @@ return [
 
     'handler' => \D2my\Logger\WeeklyCustomLogger::class, // LogHandler::class
 
+    'handler_with' => [], //['stream' => storage_path('logs/laravel.log'), 'level' => \Monolog\Logger::DEBUG],
+
     'exception_channel' => null, // ChannelEnum::EXCEPTION->value
 
     // Если guard для определения юзера не дефолтный, то тут ключём будет канал, а значением guard

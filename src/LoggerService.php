@@ -51,6 +51,7 @@ class LoggerService implements LoggerInterface
         return [
             'driver' => 'monolog',
             'handler' => config('logger.handler'),
+            'handler_with' => config('logger.handler_with'),
             'with' => [
                 'filename' => storage_path('logs/' . $this->channel . '/' .  $this->channel . '.log'),
                 'level' => 'debug',
