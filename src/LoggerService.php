@@ -29,34 +29,7 @@ class LoggerService implements LoggerInterface
      */
     public function log($level, \Stringable|string $message, array $context = []): void
     {
-        try {
-            if (!config('logger.enable')) {
-                Log::build($this->localConfig())->info($message, $this->getLogData($message, $context, $this->with));
-
-                return;
-            }
-
-            (is_null($job = config('logger.job.class')) ? LogJob::class : $job)::{config('logger.sync') ? 'dispatchSync' : 'dispatch'}($this->getLogData($message, $context, $this->with));
-        } catch (\Throwable $e) {
-            Log::build($this->localConfig())->info($message, $this->getLogData($message, $context, $this->with));
-        }
-    }
-
-    /**
-     * @return array
-     */
-    protected function localConfig(): array
-    {
-        return [
-            'driver' => 'monolog',
-            'handler' => config('logger.handler'),
-            'handler_with' => config('logger.handler_with'),
-            'with' => [
-                'filename' => storage_path('logs/' . $this->channel . '/' .  $this->channel . '.log'),
-                'level' => 'debug',
-                'maxFiles' => 0
-            ],
-        ];
+        (is_null($job = config('logger.job.class')) ? LogJob::class : $job)::{config('logger.sync') ? 'dispatchSync' : 'dispatch'}($this->getLogData($message, $context, $this->with));
     }
 
     /**
