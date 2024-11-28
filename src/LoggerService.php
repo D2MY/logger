@@ -29,7 +29,9 @@ class LoggerService implements LoggerInterface
      */
     public function log($level, \Stringable|string $message, array $context = []): void
     {
-        (is_null($job = config('logger.job.class')) ? LogJob::class : $job)::{config('logger.sync') ? 'dispatchSync' : 'dispatch'}($this->getLogData($message, $context, $this->with));
+        try {
+            (is_null($job = config('logger.job.class')) ? LogJob::class : $job)::{config('logger.sync') ? 'dispatchSync' : 'dispatch'}($this->getLogData($message, $context, $this->with));
+        } catch (\Throwable) {}
     }
 
     /**
