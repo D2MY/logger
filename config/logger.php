@@ -14,6 +14,11 @@ return [
 
     'exception_channel' => null, // ChannelEnum::EXCEPTION->value
 
+    'exception_ignore' => [
+        //0 => 'exception::class'
+        //'exception::class' => 'regex', //может быть null, тогда игнорируются все такие ошибки
+    ],
+
     // Если guard для определения юзера не дефолтный, то тут ключём будет канал, а значением guard
     // !!!! Применяется для всех логов данного канала !!!!
     // [

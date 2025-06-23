@@ -67,6 +67,22 @@ class LoggerService implements LoggerInterface
     public static function exceptionCallback(): \Closure
     {
         return function (\Throwable $e) {
+            $ignore = config('logger.exception_ignore', []);
+
+            foreach ($ignore as $exception => $regex) {
+                if (is_int($exception)) {
+                    [$exception, $regex] = [$regex, null];
+                }
+
+                if ($e::class !== $exception) {
+                    continue;
+                }
+
+                if (is_null($regex) || (is_string($regex) && preg_match($regex, $e->getMessage()) === 1)) {
+                    return;
+                }
+            }
+
             $request = request();
             $trace = array_map(fn($el) => Arr::except($el, 'args'), array_slice($e->getTrace(), 0, 50));
 
