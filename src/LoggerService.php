@@ -79,14 +79,18 @@ class LoggerService implements LoggerInterface
                 }
 
                 if (is_null($regex) || (is_string($regex) && preg_match($regex, $e->getMessage()) === 1)) {
-                    return;
+                    if (is_null($ignoredChannel = config('logger.ignored_channel'))) {
+                        return;
+                    } else {
+                        break;
+                    }
                 }
             }
 
             $request = request();
             $trace = array_map(fn($el) => Arr::except($el, 'args'), array_slice($e->getTrace(), 0, 50));
 
-            Log::channel(config('logger.exception_channel'))->info(
+            Log::channel($ignoredChannel ?? config('logger.exception_channel'))->info(
                 $e->getMessage(),
                 [
                     'exception' => $e::class,
